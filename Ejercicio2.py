@@ -24,126 +24,174 @@ def Jugar(saldo):
         system("cls")
         print("Jugar Suerte")
         pass
+    apuesta = 0
+    def apostar(apuesta):
+        print("Escoja una apuesta")
+        print(">>  1.          X1")
+        print(">>  2.          X3")
+        print(">>  3.          X5")
+        print(">>  4.          X7")
+
+        de = input("Ingrese su número de apuesta: ")
+
+        if de == "1":
+            apuesta = 1
+        elif de == "2":
+            apuesta = 3
+        elif de == "3":
+            apuesta = 5
+        elif de == "4":
+            apuesta = 7
+        elif de != "1" or de != "2" or de != "3" or de != "4":
+            system("cls")
+            apostar(apuesta)
+        return apuesta
 
 
-    print("Su saldo es de: " + str(saldo))
-    print("Se mostrará el juego en 2 segundos:")
-    time.sleep(2)
+    def Juego(saldo,apuesta):
+        print("Su saldo es de: " + str(saldo))
+        print("Se mostrará el juego en 2 segundos:")
+        print("Su apuesta es: X"+str(apuesta))
+        time.sleep(2)
 
-    matriz = [
-        [2, 2, 2],
-        [2, 2, 2],
-        [2, 2, 2]
-        ##[randrange(10),randrange(10),randrange(10)]
-    ]
-    print("\n")
-    print(matriz[0])
-    print(matriz[1])
-    print(matriz[2])
-    print("\n\n")
+        matriz = [
+            [2, 2, 2],
+            [2, 2, 2],
+            [2, 2, 2]
+            ##[randrange(10),randrange(10),randrange(10)]
+        ]
+        print("\n")
+        print(matriz[0])
+        print(matriz[1])
+        print(matriz[2])
+        print("\n\n")
 
-    def VerificaHorizontalUnidad():
-        valor = False
-        if matriz[0][0] == matriz[0][1] and matriz[0][2] == matriz[0][0]:
+        def VerificaHorizontalUnidad():
+            valor = False
+            if matriz[0][0] == matriz[0][1] and matriz[0][2] == matriz[0][0]:
+                valor = True
+                # print("1 Verifica Horizontal TRUE")
+            else:
+                pass
+                # print("1 Verifica Horizontal FALSE")
+
+            if matriz[1][0] == matriz[1][1] and matriz[1][2] == matriz[1][0]:
+                valor = True
+                # print("2 Verifica Horizontal TRUE")
+            else:
+                pass
+                # print("2 Verifica Horizontal FALSE")
+
+            if matriz[2][0] == matriz[2][1] and matriz[2][2] == matriz[2][0]:
+                valor = True
+                # print("3 Verifica Horizontal TRUE")
+            else:
+                pass
+                # print("3 Verifica Horizontal FALSE")
+            return valor
+
+        def VerificaVertical():
             valor = True
-            # print("1 Verifica Horizontal TRUE")
-        else:
-            pass
-            # print("1 Verifica Horizontal FALSE")
+            if matriz[0][0] == matriz[1][0] and matriz[2][0] == matriz[0][0]:
+                pass
+                # print("1 Verifica Vertical TRUE")
+            else:
+                valor = False
+                # print("1 Verifica Vertical FALSE")
 
-        if matriz[1][0] == matriz[1][1] and matriz[1][2] == matriz[1][0]:
+            if matriz[0][1] == matriz[1][1] and matriz[2][1] == matriz[0][1]:
+                pass
+                # print("2 Verifica Vertical TRUE")
+            else:
+                valor = False
+                # print("2 Verifica Vertical FALSE")
+
+            if matriz[0][2] == matriz[1][2] and matriz[2][2] == matriz[0][2]:
+                pass
+                # print("2 Verifica Vertical TRUE")
+            else:
+                valor = False
+                # print("3 Verifica Vertical FALSE")
+            return valor
+
+        def VerificaHorizontal():
             valor = True
-            # print("2 Verifica Horizontal TRUE")
-        else:
-            pass
-            # print("2 Verifica Horizontal FALSE")
+            if matriz[0][0] == matriz[0][1] and matriz[0][2] == matriz[0][0]:
+                pass
+                # print("1 Verifica Horizontal TRUE")
+            else:
+                valor = False
+                # print("1 Verifica Horizontal FALSE")
 
-        if matriz[2][0] == matriz[2][1] and matriz[2][2] == matriz[2][0]:
+            if matriz[1][0] == matriz[1][1] and matriz[1][2] == matriz[1][0]:
+                pass
+                # print("2 Verifica Horizontal TRUE")
+            else:
+                valor = False
+                # print("2 Verifica Horizontal FALSE")
+
+            if matriz[2][0] == matriz[2][1] and matriz[2][2] == matriz[2][0]:
+                pass
+                # print("3 Verifica Horizontal TRUE")
+            else:
+                valor = False
+                # print("3 Verifica Horizontal FALSE")
+            return valor
+
+        def VerificaIntermedio():
             valor = True
-            # print("3 Verifica Horizontal TRUE")
+            if matriz[0][0] == matriz[1][1] and matriz[2][2] == matriz[0][0]:
+                pass
+                # print("1 Verifica Intermedio TRUE")
+            else:
+                valor = False
+                # print("1 Verifica Intermedio FALSE")
+
+            if matriz[2][0] == matriz[1][1] and matriz[0][2] == matriz[2][0]:
+                pass
+                # print("2 Verifica Intermedio TRUE")
+            else:
+                valor = False
+                # print("2 Verifica Intermedio FALSE")
+
+            return valor
+        if apuesta == 7:
+            if VerificaHorizontal() and VerificaIntermedio() and VerificaVertical():
+                print("Ganó Apuesta X7")
+                saldo = int(saldo) + 7000
+            else:
+                print("Usted perdió la Apuesta X7")
+                saldo = int(saldo) - 7000
         else:
             pass
-            # print("3 Verifica Horizontal FALSE")
-        return valor
-    def VerificaVertical():
-        valor = True
-        if matriz[0][0] == matriz[1][0] and matriz[2][0] == matriz[0][0]:
-            pass
-            # print("1 Verifica Vertical TRUE")
-        else:
-            valor = False
-            #print("1 Verifica Vertical FALSE")
 
-        if matriz[0][1] == matriz[1][1] and matriz[2][1] == matriz[0][1]:
-            pass
-            #print("2 Verifica Vertical TRUE")
-        else:
-            valor = False
-            #print("2 Verifica Vertical FALSE")
+        if apuesta == 5:
+            if VerificaIntermedio():
+                print("Ganó Apuesta X5")
+                saldo = int(saldo) + 5000
+            else:
+                print("Usted perdió la Apuesta X5")
+                saldo = int(saldo) -5000
 
-        if matriz[0][2] == matriz[1][2] and matriz[2][2] == matriz[0][2]:
-            pass
-            #print("2 Verifica Vertical TRUE")
-        else:
-            valor = False
-            #print("3 Verifica Vertical FALSE")
-        return valor
+        if apuesta == 1:
+            if VerificaHorizontal():
+                print("Ganó Apuesta X3")
+                saldo = int(saldo) + 1000
+            else:
+                print("Usted perdió la Apuesta X3")
+                saldo = int(saldo) - 1000
+        if apuesta == 1:
+            if VerificaHorizontalUnidad():
+                print("Ganó Apuesta X1")
+                saldo = int(saldo) + 500
+            else:
+                print("Usted perdió la Apuesta X1")
+                saldo = int(saldo) - 500
+        return saldo
 
-    def VerificaHorizontal():
-        valor = True
-        if matriz[0][0] == matriz[0][1] and matriz[0][2] == matriz[0][0]:
-            pass
-            #print("1 Verifica Horizontal TRUE")
-        else:
-            valor = False
-            #print("1 Verifica Horizontal FALSE")
-
-        if matriz[1][0] == matriz[1][1] and matriz[1][2] == matriz[1][0]:
-            pass
-            #print("2 Verifica Horizontal TRUE")
-        else:
-            valor = False
-            #print("2 Verifica Horizontal FALSE")
-
-        if matriz[2][0] == matriz[2][1] and matriz[2][2] == matriz[2][0]:
-            pass
-            #print("3 Verifica Horizontal TRUE")
-        else:
-            valor = False
-            #print("3 Verifica Horizontal FALSE")
-        return valor
-
-    def VerificaIntermedio():
-        valor = True
-        if matriz[0][0] == matriz[1][1] and matriz[2][2] == matriz[0][0]:
-            pass
-            #print("1 Verifica Intermedio TRUE")
-        else:
-            valor = False
-            #print("1 Verifica Intermedio FALSE")
-
-        if matriz[2][0] == matriz[1][1] and matriz[0][2] == matriz[2][0]:
-            pass
-            #print("2 Verifica Intermedio TRUE")
-        else:
-            valor = False
-            #print("2 Verifica Intermedio FALSE")
-
-        return valor
-
-    if VerificaHorizontal() and VerificaIntermedio() and VerificaVertical():
-        print("Ganó Apuesta X7")
-        saldo = saldo * 7
-    elif VerificaIntermedio():
-        print("Usted Gano Apuesta X5")
-        saldo = saldo *5
-    elif VerificaHorizontal():
-        print("Usted Gano Apuesta X3")
-        saldo = saldo *3
-    elif VerificaHorizontalUnidad():
-        print("Usted Gano Apuesta X3")
-        saldo = saldo *1
-
+    apuesta = apostar(apuesta)
+    saldo = Juego(saldo,apuesta)
+    print("Su saldo es de: "+str(saldo))
     print("Finalizó juego.\nVolviendo al menú en 10 segundos...")
     time.sleep(10)
     return saldo
@@ -156,9 +204,9 @@ def SacarDinero(saldo):
 
 
 def Menu(saldo):
-    print("1. Ingrese Dinero")
-    print("2. Jugar")
-    print("3. Sacar Dinero")
+    print(">>  1. Ingrese Dinero")
+    print(">>  2. Jugar")
+    print(">>  3. Sacar Dinero")
 
     de = input("Ingrese una opción: ")
 
