@@ -3,10 +3,6 @@ from random import randrange
 import time
 from os import system
 
-
-# Declaración de variables
-
-
 def IngreseDinero(saldo):
     system("cls")
     saldo = input("Ingrese su saldo para jugar : ")
@@ -28,23 +24,23 @@ def Jugar(saldo):
     def apostar(apuesta):
         print("Escoja una apuesta")
         print(">>  1.          X1")
-        print(">>  2.          X3")
-        print(">>  3.          X5")
-        print(">>  4.          X7")
+        print(">>  3.          X3")
+        print(">>  5.          X5")
+        print(">>  7.          X7")
 
         de = input("Ingrese su número de apuesta: ")
 
         if de == "1":
             apuesta = 1
-        elif de == "2":
-            apuesta = 3
         elif de == "3":
+            apuesta = 3
+        elif de == "5":
             apuesta = 5
-        elif de == "4":
+        elif de == "7":
             apuesta = 7
-        elif de != "1" or de != "2" or de != "3" or de != "4":
+        elif de != "1" or de != "3" or de != "5" or de != "7":
             system("cls")
-            apostar(apuesta)
+            apostar("")
         return apuesta
 
 
@@ -55,10 +51,12 @@ def Jugar(saldo):
         time.sleep(2)
 
         matriz = [
-            [2, 2, 2],
-            [2, 2, 2],
-            [2, 2, 2]
-            ##[randrange(10),randrange(10),randrange(10)]
+            ##[2, 2, 2],
+            #[2, 2, 2],
+            #[2, 2, 2]
+            [randrange(10), randrange(10), randrange(10)],
+            [randrange(10), randrange(10), randrange(10)],
+            [randrange(10), randrange(10), randrange(10)]
         ]
         print("\n")
         print(matriz[0])
@@ -173,7 +171,7 @@ def Jugar(saldo):
                 print("Usted perdió la Apuesta X5")
                 saldo = int(saldo) -5000
 
-        if apuesta == 1:
+        if apuesta == 3:
             if VerificaHorizontal():
                 print("Ganó Apuesta X3")
                 saldo = int(saldo) + 1000
