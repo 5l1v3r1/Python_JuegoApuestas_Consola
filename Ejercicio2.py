@@ -8,10 +8,12 @@ from os import system
 
 
 def IngreseDinero(saldo):
-    print("Ingrese Dinero")
-    saldo = input("Ingrese su saldo")
+    system("cls")
+    saldo = input("Ingrese su saldo para jugar : ")
+    return saldo
 
 def Jugar(saldo):
+    system("cls")
     print("Jugar")
 
     print("Su saldo es de: " + str(saldo))
@@ -95,32 +97,39 @@ def Jugar(saldo):
         print("No Gano X/")
 
 
+    return saldo
+
+
 def SacarDinero(saldo):
-    print("Sacar Dinero")
+    system("cls")
+    print("El dinero en total es: "+str(saldo))
+    return saldo
 
 
-def Menu():
+def Menu(saldo):
     print("1. Ingrese Dinero")
     print("2. Jugar")
     print("3. Sacar Dinero")
-    de = 0
-    saldo = 0
-    def m():
-        try:
-            de = int(input("Ingrese una opción: "))
-        except:
-            m()
-    m()
 
-    IngreseDinero(saldo) if de == 1 else False
-    Jugar(saldo) if de == 2 else False
-    SacarDinero(saldo) if de == 3 else False
-    Menu() if de != 1 or de != 2 or de != 3 else False
+
+    de = input("Ingrese una opción: ")
+
+    if de == "1":
+        saldo = IngreseDinero(saldo)
+        Menu(saldo)
+    elif de == "2":
+        saldo = Jugar(saldo)
+    elif de == "3":
+        saldo = SacarDinero(saldo)
+    elif de != "1" or de != "2" or de != "3":
+        system("cls")
+        Menu(saldo)
 
 
 
 if __name__ == '__main__':
-    Menu()
+    saldo = 0
+    Menu(saldo)
 
 
 
